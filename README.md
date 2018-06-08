@@ -1,5 +1,6 @@
 Idee: E-kooli simulatsioon
-Rühmas: Rasmus Karm
+
+Töö tegin üksi
 
 Avades rakenduse "PraktikaHinded" saab registreerida õpetajana või õpilasena.
 Tegin paar õpilase kontot ära, mille paroolid ja kasutajanimed leiab failist "School.xml".
