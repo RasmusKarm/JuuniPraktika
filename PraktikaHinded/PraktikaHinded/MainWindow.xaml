@@ -1,0 +1,174 @@
+﻿<Window x:Class="PraktikaHinded.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PraktikaHinded"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized" WindowStyle="SingleBorderWindow">
+    <Grid>
+        
+        <!-- START -->
+        <Grid x:Name="LoginView" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="RegisterForm" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="300" Margin=" 70 0 0 50" Grid.Column="1">
+                <StackPanel.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.9"/>
+                </StackPanel.Effect>
+                <Label Content="Register" HorizontalAlignment="Center" FontSize="20"/>
+                <ComboBox x:Name="RegisterTeacherOrStudent" Margin="20 20 20 0" SelectedIndex="0" >
+                    <ComboBoxItem Content="--Vali--" HorizontalContentAlignment="Center"/>
+                    <ComboBoxItem Content="Õpilane" HorizontalContentAlignment="Center"/>
+                    <ComboBoxItem Content="Õpetaja" HorizontalContentAlignment="Center"/>
+                </ComboBox>
+                <Label Content="Username" Margin="0 30 0 0"/>
+                <TextBox x:Name="RegisterUserName" Height="30" Margin="20 0 20 20" FontSize="20"/>
+                <Label Content="Password"/>
+                <TextBox x:Name="RegisterPassWord" Height="30" Margin="20 0 20 20" VerticalAlignment="Top" FontSize="20"/>
+                <Label Content="Comfirm Password"/>
+                <TextBox x:Name="RegisterPassWordComfirm" Height="30" Margin="20 0 20 20" FontSize="20"/>
+                <Button x:Name="RegisterBtn" Click="RegisterBtn_Click" Height="30" Width="120" Content="Register" FontSize="16"/>
+            </StackPanel>
+
+            <StackPanel x:Name="LoginForm" HorizontalAlignment="Right" VerticalAlignment="Center"  Width="300" Margin=" 0 0 70 50">
+                <StackPanel.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.9"/>
+                </StackPanel.Effect>
+                <Label Content="Log in" HorizontalAlignment="Center" FontSize="20" Margin="0 0 0 0"/>
+                <Label Content="Username" Margin="0 30 0 0"/>
+                <TextBox x:Name="logInUserName" Height="30" Margin="20 0 20 20" FontSize="20"/>
+                <Label Content="Password"/>
+                <TextBox x:Name="logInPassWord" FontStyle="Oblique" Height="30" Margin="20 0 20 0" VerticalAlignment="Top" FontSize="20"/>
+                <Button x:Name="LogInBtn" Click="LogInBtn_Click" Margin="0 20 0 0" Height="30" Width="120" Content="Log in" FontSize="16"/>
+            </StackPanel>
+        </Grid>
+        
+        <!-- ////TEACHERS VIEW//// -->
+
+        <Grid x:Name="TeacherView" Visibility="Collapsed">
+            <!-- TEACHERS MENU VIEW -->
+            <Grid x:Name="TeacherChoiceView" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center" Width="400">
+                    <Button x:Name="TeacherMarkBtn" Click="TeacherMarkBtn_Click" Height="50" Margin="10" FontSize="20" Content="Anna hinne"/>
+                    <Button x:Name="TeacherNoteBtn" Click="TeacherNoteBtn_Click" Height="50" Margin="10" FontSize="20" Content="Anna märkus"/>
+                    <Button x:Name="TeacherHomeWorkBtn" Click="TeacherHomeWorkBtn_Click" Height="50" Margin="10" FontSize="20" Content="Anna kodutöö"/>
+                    <Button x:Name="TeacherLogOutBtn" Click="TeacherLogOutBtn_Click" Background="LightSlateGray"  Height="50" Margin="10" FontSize="20" Content="Logi välja"/>
+                </StackPanel>
+            </Grid>
+            
+            <!-- TEACHERS MARKS VIEW -->
+            
+            <Grid x:Name="TeacherMarksView" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <ListBox x:Name="TeacherListOfStudentsToMark" Background="AliceBlue" FontSize="20" />
+                
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="300">
+                    <Grid HorizontalAlignment="Left" Margin="0 0 0 20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Hinne:" FontSize="23"/>
+                        <TextBox x:Name="TeacherMarkBox" Width="30" Height="30" Grid.Column="1" FontSize="23"/>
+                    </Grid>
+                    <Label FontSize="23" Content="Selgitus:"/>
+                    <TextBox x:Name="TeacherMarkExplanation" Height="198" TextWrapping="Wrap" FontSize="20"/>
+                </StackPanel>
+
+                <Button x:Name="CommitMarkBtn" Click="CommitMarkBtn_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Lisa" Margin="45 0 45 55" Height="40" Width="90" FontSize="20"/>
+                <Button x:Name="TeacherBackBtn" Click="TeacherBackBtn_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="90" Margin="45 0 45 10" FontSize="20" Content="Tagasi"/>
+            </Grid>
+
+            <!-- TEACHERS NOTES VIEW -->
+            
+            <Grid x:Name="TeacherNoteView" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <ListBox x:Name="TeacherListOfStudentsToNote" Background="AliceBlue" FontSize="20" />
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="300">
+                    <Label FontSize="23" Content="Märkus:"/>
+                    <TextBox x:Name="TeacherNoteToStudent" Height="198" TextWrapping="Wrap" FontSize="20"/>
+                </StackPanel>
+
+                <Button x:Name="CommitNoteBtn" Click="CommitNoteBtn_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Lisa" Margin="45 0 45 55" Height="40" Width="90" FontSize="20"/>
+                <Button Click="TeacherBackBtn_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="90" Margin="45 0 45 10" FontSize="20" Content="Tagasi"/>
+            </Grid>
+            
+            <!-- TEACHERS HOMEWORKS VIEW -->
+
+            <Grid x:Name="TeacherHomeworksView" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="TeacherCurrentHomeworks" Background="AliceBlue" FontSize="20"/>
+                
+                <StackPanel Grid.Row="1">
+                    <Label FontSize="20" Content="Uus kodutöö:"/>
+                    <TextBox x:Name="TeacherNewHomework" Height="120" Margin="7 0 130 0" FontSize="20" TextWrapping="Wrap"/>
+                </StackPanel>
+                <Button x:Name="CommitHomework" Click="CommitHomework_Click" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Lisa" Margin="35 0 35 55" Height="40" Width="90" FontSize="20"/>
+                <Button Click="TeacherBackBtn_Click" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="90" Margin="35 0 35 10" FontSize="20" Content="Tagasi"/>
+            </Grid>
+        </Grid>
+        
+        <!-- ////STUDENTS VIEW//// -->
+        
+        <Grid x:Name="StudentView" Visibility="Collapsed">
+            <!-- STUDENTS MENU -->
+            <Grid x:Name="StudentChoiceView" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center" Width="400">
+                    <Button x:Name="StudentMarkBtn" Click="StudentMarkBtn_Click" Height="50" Margin="10" FontSize="20" Content="Minu hinded"/>
+                    <Button x:Name="StudentNoteBtn" Click="StudentNoteBtn_Click" Height="50" Margin="10" FontSize="20" Content="Minu Märkused"/>
+                    <Button x:Name="StudentHomeWorkBtn" Click="StudentHomeWorkBtn_Click" Height="50" Margin="10" FontSize="20" Content="Minu kodutööd"/>
+                    <Button x:Name="StudentLogOutBtn" Background="LightSlateGray" Click="StudentLogOutBtn_Click" Height="50" Margin="10" FontSize="20" Content="Logi Välja"/>
+                </StackPanel>
+            </Grid>
+            <!-- STUDENTS MARKS -->
+            
+            <Grid x:Name="StudentMarksView" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="StudentsTeachersList" Background="AliceBlue" BorderBrush="Black" FontSize="24" SelectionChanged="StudentsTeachersList_SelectionChanged"/>
+                <ListBox x:Name="StudentsMarksList" Background="AliceBlue" Grid.Column="1" BorderBrush="Black" FontSize="24"/>
+                <Button x:Name="StudentBackBtn" Click="StudentBackBtn_Click" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="90" Margin="10" FontSize="20" Content="Tagasi"/>
+            </Grid>
+            
+            <!-- STUDENTS NOTES -->
+
+            <Grid x:Name="StudentNotesView" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <ListBox x:Name="StudentsNotesList" FontSize="24" Background="AliceBlue"/>
+                <Button Click="StudentBackBtn_Click" Grid.Row="1" HorizontalAlignment="Right" Height="40" Width="90" Margin="10" FontSize="20" Content="Tagasi"/>
+            </Grid>
+            
+            <!-- STUDENTS HOMEWORK -->
+
+            <Grid x:Name="StudentHomeworkView" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="StudentsHomeWorksList" FontSize="20" Background="AliceBlue"/>
+                <Button Click="StudentBackBtn_Click" Grid.Row="1" HorizontalAlignment="Right" Height="40" Width="90" Margin="10" FontSize="20" Content="Tagasi"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
