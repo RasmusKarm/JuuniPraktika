@@ -2,4 +2,6 @@
   <Marks />
   <Notes />
   <Homeworks />
+  <Student Name="Rasmus Karm" Pass="123" />
+  <Student Name="Lambine" Pass="123" />
 </Data>
